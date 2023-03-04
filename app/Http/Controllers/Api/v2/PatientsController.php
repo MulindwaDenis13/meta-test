@@ -1073,7 +1073,7 @@ class PatientsController extends Controller
     public function patient_number()
     {
         try {
-            $all_patients = Patient::where('facility_id',auth('api')->user()->facility_id)->count();
+            $all_patients = Patient::count();
             return $this->customSuccessResponseWithPayload($all_patients);
         } catch (\Throwable $th) {
             return $this->customFailResponseWithPayload($th->getMessage());
