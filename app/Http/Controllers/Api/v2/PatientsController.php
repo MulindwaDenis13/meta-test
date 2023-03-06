@@ -22,6 +22,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -1073,7 +1074,7 @@ class PatientsController extends Controller
     public function patient_number()
     {
         try {
-            $all_patients = Patient::count();
+            $all_patients = Patient::where('facility_id',Auth::guard()->user()->facility_id)->count();
             return $this->customSuccessResponseWithPayload($all_patients);
         } catch (\Throwable $th) {
             return $this->customFailResponseWithPayload($th->getMessage());
