@@ -30,6 +30,10 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class PatientsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth:api']);
+    }
     //TIED TO v1/patients/all ROUTE IN THE api.php FILE IN THE ROUTES FOLDER
     use FrontOfficeTrait;
 
